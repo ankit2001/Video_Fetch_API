@@ -71,7 +71,7 @@ TEMPLATES = [
             ],
         },
     },
-
+]
 
 WSGI_APPLICATION = 'Video_Fetch.wsgi.application'
 
@@ -81,14 +81,12 @@ WSGI_APPLICATION = 'Video_Fetch.wsgi.application'
 
 DATABASES = {
     'default': {
-        'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': env("NAME", default='Fampay'),
+        'NAME': env("NAME", default='fampay'),
         'USER': env("USERNAME", default='ankit2001'),
         'PASSWORD': env("PASSWORD", default='Fampay@123'),
         'HOST': env("HOST", default='localhost'),
         'PORT': env("PORT", default=''),
-    }
     }
 }
 

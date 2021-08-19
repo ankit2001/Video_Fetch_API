@@ -81,10 +81,4 @@ def schelude_jobs():
                 continue
         for conn in connections.all():
             conn.close()
-        
-        
-
-
-
-
-
+            

@@ -1,6 +1,16 @@
 # Video Fetch API
 Tech Stack: DRF, Postgrest, Docker 
 
+- Server should call the YouTube API continuously in background (async) with some interval (say 10 seconds) for fetching the latest videos for a predefined search query and should store the data of videos (specifically these fields - Video title, description, publishing datetime, thumbnails URLs and any other fields you require) in a database with proper indexes.
+- A GET API which returns the stored video data in a paginated response sorted in descending order of published datetime.
+- A basic search API to search the stored videos using their title and description.
+- Dockerize the project.
+- It should be scalable and optimised.
+- Add support for supplying multiple API keys so that if quota is exhausted on one, it automatically uses the next available key.
+- Make a dashboard to view the stored videos with filters and sorting options (optional)
+- Optimise search api, so that it's able to search videos containing partial match for the search query in either video title or description.
+    - Ex 1: A video with title *`How to make tea?`* should match for the search query `tea how`
+
 ## Postgres Setup:
 ```Create a Postgresql database in the system  
 Add the credetings in .env file like .env.example or change the .env.example to .env 
@@ -14,7 +24,7 @@ You can follow the instructions here  https://www.postgresql.org/docs/9.0/sql-cr
 ```
 git clone https://github.com/ankit2001/Video_Fetch_API.git 
 cd Video_Fetch_API 
-sudo apt install python3 python3-pip or brew install python3 python3-pip<br> 
+sudo apt install python3 python3-pip or brew install python3 python3-pip\
 python3 -m venv ~/env 
 source ~/env/bin/activate 
 sudo -H pip install -r requirements.txt

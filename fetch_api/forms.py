@@ -1,8 +1,8 @@
 from rest_framework import serializers
 
 from . import models
-from . import background_processes
 
+# Video Model Serializer
 class VideoSerializer(serializers.ModelSerializer):
     total_meta_data = serializers.SerializerMethodField()
 
@@ -14,6 +14,7 @@ class VideoSerializer(serializers.ModelSerializer):
         fields = '__all__'
         read_only_fields = ('vid_id',)
 
+# Serializer for Meta Data
 class VideoMetaDataSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.VideoMetaData

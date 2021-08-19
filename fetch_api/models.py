@@ -1,7 +1,6 @@
 from django.db import models
 
-# Create your models here.
-
+# Video Model
 class Video(models.Model):
     title = models.CharField(max_length=450)
     vid_id = models.CharField(max_length=150, unique=True)
@@ -14,6 +13,7 @@ class Video(models.Model):
 
     
 
+# Model for Meta data associated with video 
 class VideoMetaData(models.Model):
 
     current_video = models.ForeignKey(Video, on_delete=models.CASCADE)

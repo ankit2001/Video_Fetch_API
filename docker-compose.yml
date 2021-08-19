@@ -1,0 +1,28 @@
+version : "3"
+
+services:
+  app:
+    build:
+      context: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./:/app
+    command: >
+      sh -c "python manage.py migrate && python manage.py process_tasks & python manage.py runserver 0.0.0.0:8000"
+    environment:
+      - DB_HOST=db
+      - DB_NAME=fampay
+      - DB_USER=ankit2001
+      - DB_PASS=Fampay@123
+    depends_on:
+      - db
+
+  db:
+    image: postgres:13-alpine
+    environment:
+      - POSTGRES_DB=fampay
+      - POSTGRES_USER=ankit2001
+      - POSTGRES_PASSWORD=Fampay@123
+    ports:
+      - "5432:5432"

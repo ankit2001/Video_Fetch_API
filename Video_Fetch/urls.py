@@ -17,24 +17,29 @@ from django.contrib import admin
 from django.urls import path, include
 
 
-#from background_task.models import Task
+from background_task.models import Task
 from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls import  url
-from fetch_api import background_processes
+from fetch_api import background_process
 
+
+# Registering the routes
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('fetch_api.urls')),
 ]
 
+# Repeating the background process forever
 REPEAT_PROCESS = 100000000
+
+# Function to run the background process
 def start_process(repeat):
     try:
         Task.objects.all().delete()
     except:
         pass
-    background_processes.schelude_jobs()
+    background_process.schelude_jobs()
 
 
-#start_process(REPEAT_PROCESS)
+start_process(REPEAT_PROCESS)

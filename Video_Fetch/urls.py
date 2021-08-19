@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 
 
-from background_task.models import Task
+#from background_task.models import Task
 from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls import  url
@@ -37,4 +37,4 @@ def start_process(repeat):
     background_processes.schelude_jobs()
 
 
-start_process(REPEAT_PROCESS)
+#start_process(REPEAT_PROCESS)

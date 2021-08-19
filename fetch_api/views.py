@@ -13,8 +13,8 @@ import json
 from django.core import serializers
 
 class VideosPaginationAPIView(PageNumberPagination):
-    page_size = 7
-    max_page_size = 7
+    page_size = 8
+    max_page_size = 8
 
 class VideosAPIView(viewsets.ModelViewSet):
     renderer_classes = [JSONRenderer]

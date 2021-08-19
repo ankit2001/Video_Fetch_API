@@ -7,16 +7,14 @@ class Video(models.Model):
     vid_id = models.CharField(max_length=150, unique=True)
     description = models.CharField(max_length=2000)
     published_at = models.DateTimeField(auto_now_add=True, db_index=True)
-    class Meta:
-        indexes = [
-            models.Index(fields=['-published_at']),
-        ]
+    thumbnail_url = models.CharField(max_length=450)
+
     def __str__(self):
         return self.title
 
     
 
-class VideMetaData(models.Model):
+class VideoMetaData(models.Model):
 
     current_video = models.ForeignKey(Video, on_delete=models.CASCADE)
     thumbnail_size = models.CharField(max_length=150)
@@ -26,4 +24,4 @@ class VideMetaData(models.Model):
     last_updated_at = models.DateTimeField(auto_now=True, editable=False)
 
     def __str__(self):
-        return self.video.title
+        return self.current_video.title

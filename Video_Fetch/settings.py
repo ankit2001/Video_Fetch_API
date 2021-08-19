@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path
 import environ
-
+import os
 env = environ.Env()
 # reading .env file
 environ.Env.read_env()
@@ -29,7 +29,7 @@ SECRET_KEY = 'r7hxsn+cq06mq+_zp#j10rr5*f!-h#-e5)_+q2^$cxxt!)2w5p'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["0.0.0.0", "localhost"]
 
 
 # Application definition
@@ -41,7 +41,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'fetch_api'
+    'rest_framework',
+    'rest_framework.authtoken',
+    'fetch_api',
+    'background_task'
 ]
 
 MIDDLEWARE = [
@@ -81,12 +84,11 @@ WSGI_APPLICATION = 'Video_Fetch.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': env("NAME", default='fampay'),
-        'USER': env("USERNAME", default='ankit2001'),
-        'PASSWORD': env("PASSWORD", default='Fampay@123'),
-        'HOST': env("HOST", default='localhost'),
-        'PORT': env("PORT", default=''),
+        'ENGINE': 'django.db.backends.postgresql',
+        'HOST': os.environ.get('DB_HOST'),
+        'NAME': os.environ.get('DB_NAME'),
+        'USER': os.environ.get('DB_USER'),
+        'PASSWORD': os.environ.get('DB_PASS'),
     }
 }
 
@@ -128,3 +130,5 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, "static/")
+

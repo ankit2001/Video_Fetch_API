@@ -7,6 +7,7 @@ RUN apk add --update --no-cache --virtual .tmp-build-deps gcc libc-dev linux-hea
 RUN pip3 install --upgrade pip
 RUN pip3 install -r /requirements.txt
 RUN pip3 install --upgrade google-api-python-client
+RUN pip3 install -U drf-yasg
 
 RUN apk del .tmp-build-deps
 

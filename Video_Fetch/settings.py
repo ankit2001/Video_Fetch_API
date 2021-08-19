@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'fetch_api',
-    'background_task'
+    'drf_yasg',
+    'background_task',
 ]
 
 MIDDLEWARE = [

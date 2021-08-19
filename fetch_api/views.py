@@ -12,10 +12,14 @@ from django.http import HttpResponse
 import json
 from django.core import serializers
 
-class VideosPaginationAPIView(PageNumberPagination):
-    page_size = 8
-    max_page_size = 8
 
+# Pagination class for paginating the Video API
+class VideosPaginationAPIView(PageNumberPagination):
+    page_size = 7
+    max_page_size = 7
+
+
+# APIView for Video API
 class VideosAPIView(viewsets.ModelViewSet):
     renderer_classes = [JSONRenderer]
     serializer_class = forms.VideoSerializer
@@ -24,15 +28,18 @@ class VideosAPIView(viewsets.ModelViewSet):
     search_fields = ('title', 'description',)
     ordering_fields = ('title', 'vid_id', 'description')
 
+    # Getting queryset
     def get_queryset(self):
         return models.Video.objects.all().order_by('-published_at')
 
+    # Getting object
     def get_object(self, pk):
         if models.Video.objects.filter(pk=pk).exists():
             return models.Video.objects.get(pk=pk)
         else:
             return None
-
+    
+    # Providing Options for sorting and searching in dashboard
     def options(self, request, *args, **kwargs):
         q = request.query_params.get("q")
         query = Q(title__icontains=q)
@@ -44,17 +51,23 @@ class VideosAPIView(viewsets.ModelViewSet):
         return Response(serializer.data, status=status.HTTP_200_OK)
 
 
+# Search API for searching on the basis of title and description
 def search_videos(request):
     query = request.GET.get("query")
+
+    # Split the words on the basis of spaces to optimise the search for make tea => How to make tea
     query = list(query.split())
     stype = request.GET.get("type")
     q = Q()
+    # If type is title we take the bitwise and with all the words containg the title, so it will give more optimised results
     if stype == "title":
         for term in query:
             q &= Q(title__icontains=term)
+    # If type is description we take the bitwise and with all the words containg the description so it will give more optimised results   
     elif stype == "description":
         for term in query:
             q &= Q(description__icontains=term)
+    # If type is title and description both, we take the bitwise and with all the words containg the title and then bitwise and with all the words containing description and then the bitwise or between two, so it will give more optimised results
     else:
         q1 = Q()
         q2 = Q()

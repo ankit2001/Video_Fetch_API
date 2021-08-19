@@ -79,6 +79,7 @@ WSGI_APPLICATION = 'Video_Fetch.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
+# Postgres Setup
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',

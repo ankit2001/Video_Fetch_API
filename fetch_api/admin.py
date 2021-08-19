@@ -2,6 +2,8 @@ from django.contrib import admin
 
 from . import models
 
+
+# Register all the apis to admin site for the dashboard
 @admin.register(models.Video)
 class VideoAdmin(admin.ModelAdmin):
 	list_display = [field.name for field in models.Video._meta.fields]

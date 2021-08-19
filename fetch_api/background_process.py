@@ -6,7 +6,7 @@ from django.db import connections
 from collections import deque
 
 
-API_KEYS = open('fetch_api/keys.txt').read().split('\n')
+API_KEYS = open('fetch_api/example_keys.txt').read().split('\n')
 API_KEYS_STACK = deque()
 
 YOUTUBE_API_SERVICE = "youtube"

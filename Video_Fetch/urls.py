@@ -14,8 +14,27 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
+
+
+from background_task.models import Task
+from django.contrib import admin
+from django.urls import path, include
+from django.conf.urls import  url
+from fetch_api import background_processes
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('api/', include('fetch_api.urls')),
 ]
+
+REPEAT_PROCESS = 100000000
+def start_process(repeat):
+    try:
+        Task.objects.all().delete()
+    except:
+        pass
+    background_processes.schelude_jobs()
+
+
+start_process(REPEAT_PROCESS)

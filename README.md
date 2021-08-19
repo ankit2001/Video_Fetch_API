@@ -2,21 +2,21 @@
 Tech Stack: DRF, Postgrest, Docker 
 
 ## Postgres Setup:
-```Create a Postgresql database in the system  <br>
-Add the credetings in .env file like .env.example or change the .env.example to .env <br>
-Add credentials DB_USER, DB_PASS, DP_HOST, DB_NAME <br>
-If you have no role assiged, make DB_USER as root <br>
+```Create a Postgresql database in the system  
+Add the credetings in .env file like .env.example or change the .env.example to .env 
+Add credentials DB_USER, DB_PASS, DP_HOST, DB_NAME 
+If you have no role assiged, make DB_USER as root 
 You can follow the instructions here  https://www.postgresql.org/docs/9.0/sql-createdatabase.html 
 ```
 
 ## Environment setup:
 
 ```
-git clone https://github.com/ankit2001/Video_Fetch_API.git <br>
-cd Video_Fetch_API <br>
+git clone https://github.com/ankit2001/Video_Fetch_API.git 
+cd Video_Fetch_API 
 sudo apt install python3 python3-pip or brew install python3 python3-pip<br> 
-python3 -m venv ~/env <br>
-source ~/env/bin/activate <br>
+python3 -m venv ~/env 
+source ~/env/bin/activate 
 sudo -H pip install -r requirements.txt
 (without -H in linux)
 ```
